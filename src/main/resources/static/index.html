@@ -1,26 +1,24 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
 <head>
     <title>Index</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="main.js"></script>
-
-<script>
-
-
-
-
-</script>
-
+    <script>
+        $(document).ready(function () {
+            $("#updatePerson").submit(function (event) {
+                event.preventDefault();
+                updateAjax()
+            });
+        })
+    </script>
 </head>
 <body onload="getAjax()">
 <div class="container" id="personList">
-
     <table class="table table-bordered" align="center">
         <thead>
         <th></th>
@@ -31,31 +29,26 @@
         <th></th>
         </thead>
         <tbody id="data">
-     </tbody>
+        </tbody>
     </table>
-
-    <a href="add-person-page.html" class="btn btn-success"  role="button"/>Add Person</a></div>
-    <br/>
+    <a href="add-person-page.html" class="btn btn-success" role="button"/>Add Person</a></div>
+<br/>
 <div class="container" id="update">
     <a href="index.html" class="btn btn-success" role="button">Home</a>
     <h2 align="center">Update Person</h2>
     <form id="updatePerson">
         <input type="hidden" id="id"/>
         <br/>
-        <input type="text" id="updateName"   class="form-control"/>
+        <input type="text" id="updateName" class="form-control"/>
         <br/>
-        <input type="text" id="updateAge"  class="form-control"/>
+        <input type="text" id="updateAge" class="form-control"/>
         <br/>
-        <input type="text" id="updateHeight"   class="form-control"/>
+        <input type="text" id="updateHeight" class="form-control"/>
         <br/>
-        <input type="text" id="updateWeight"   class="form-control"/>
+        <input type="text" id="updateWeight" class="form-control"/>
         <br/>
-        <input type="submit" id="postButton"  value="Update Person" class="btn btn-primary" role="button"/>
-
+        <input type="submit" id="postButton" value="Update Person" class="btn btn-primary" role="button"/>
     </form>
-
 </div>
-
-
 </body>
 </html>

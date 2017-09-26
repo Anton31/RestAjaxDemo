@@ -1,8 +1,9 @@
 function getAjax() {
+    $("#update").hide()
     $.ajax({
         type: "GET",
         url: "/rest/person", success: function (result) {
-            $("#update").hide()
+
             for (var i = 0; result.length > i; i++) {
                 $("<tr>" +
                     "<td><button class='btn btn-danger' onclick='deleteAjax(" + result[i].id + ")'>Delete</button></td>" +
@@ -16,6 +17,7 @@ function getAjax() {
         }
     })
 }
+
 function deleteAjax(id) {
     $.ajax({
         type: "DELETE",
@@ -26,6 +28,7 @@ function deleteAjax(id) {
         }
     })
 }
+
 function getByIdAjax(id) {
     $("#update").show()
     $("#personList").hide()
@@ -41,56 +44,47 @@ function getByIdAjax(id) {
         }
     })
 }
-$(document).ready(function () {
-    $("#updatePerson").submit(function (event) {
-        event.preventDefault();
-        updateAjax()
-    });
-    function updateAjax() {
-        var formData = {
-            id: $("#id").val(),
-            name: $("#updateName").val(),
-            age: $("#updateAge").val(),
-            height: $("#updateHeight").val(),
-            weight: $("#updateWeight").val()
-        }
-        $.ajax({
-            type: "PUT",
-            contentType: "application/json",
-            url: "/rest/person",
-            data: JSON.stringify(formData),
-            success: function () {
-                $("#personList").show()
-                $("#update").hide()
-                $("#data").empty()
-                getAjax()
-            }
-        })
+
+function updateAjax() {
+    var formData = {
+        id: $("#id").val(),
+        name: $("#updateName").val(),
+        age: $("#updateAge").val(),
+        height: $("#updateHeight").val(),
+        weight: $("#updateWeight").val()
     }
-})
-$(document).ready(function () {
-    $("#personForm").submit(function (event) {
-        event.preventDefault();
-        ajaxPost();
-    });
-    function ajaxPost() {
-        var formData = {
-            name: $("#name").val(),
-            age: $("#age").val(),
-            weight: $("#weight").val(),
-            height: $("#height").val()
+    $.ajax({
+        type: "PUT",
+        contentType: "application/json",
+        url: "/rest/person",
+        data: JSON.stringify(formData),
+        success: function () {
+            $("#personList").show()
+            $("#update").hide()
+            $("#data").empty()
+            getAjax()
         }
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/rest/person",
-            data: JSON.stringify(formData),
-            success: function () {
-                location.href = "/index.html"
-            }
-        })
+    })
+}
+
+function ajaxPost() {
+    var formData = {
+        name: $("#name").val(),
+        age: $("#age").val(),
+        weight: $("#weight").val(),
+        height: $("#height").val()
     }
-})
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/rest/person",
+        data: JSON.stringify(formData),
+        success: function () {
+            location.href = "/index.html"
+        }
+    })
+}
+
 
 
 
